@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Vortex",
+  "scopeName": "source.vortex",
+  "fileTypes": ["vtx"],
+  "patterns": [
+    {
+      "include": "#vortex-special-tags"
+    },
+    {
+      "include": "source.tsx"
+    }
+  ],
+  "repository": {
+    "vortex-special-tags": {
+      "patterns": [
+        {
+          "begin": "(<)(route|fetch)(\\s)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.tsx"
+            },
+            "2": {
+              "name": "entity.name.tag.tsx support.class.component.tsx"
+            },
+            "3": {
+              "name": "meta.jsx.children.tsx"
+            }
+          },
+          "end": "(/?>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.tsx"
+            }
+          },
+          "contentName": "meta.tag.attributes.tsx",
+          "patterns": [
+            {
+              "match": "\\b(path|url|server|as)(?==)",
+              "name": "entity.other.attribute-name.tsx support.type.property-name.tsx"
+            },
+            {
+              "include": "source.tsx#tag-stuff"
+            }
+          ]
+        },
+        {
+          "match": "(</?)(route|fetch)(>)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.tsx"
+            },
+            "2": {
+              "name": "entity.name.tag.tsx support.class.component.tsx"
+            },
+            "3": {
+              "name": "punctuation.definition.tag.end.tsx"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

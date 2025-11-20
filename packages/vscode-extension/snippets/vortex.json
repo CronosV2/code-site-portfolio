@@ -1,0 +1,162 @@
+{
+  "Route Component": {
+    "prefix": "vroute",
+    "body": [
+      "<route path=\"${1:/}\">",
+      "\t<div>",
+      "\t\t$0",
+      "\t</div>",
+      "</route>"
+    ],
+    "description": "Créer une route Vortex"
+  },
+  "Route with Title": {
+    "prefix": "vroutetitle",
+    "body": [
+      "<route path=\"${1:/}\">",
+      "\t<div>",
+      "\t\t<h1>${2:Page Title}</h1>",
+      "\t\t$0",
+      "\t</div>",
+      "</route>"
+    ],
+    "description": "Route avec titre"
+  },
+  "Route with Styled Div": {
+    "prefix": "vroutestyle",
+    "body": [
+      "<route path=\"${1:/}\">",
+      "\t<div style={{ padding: '2rem', fontFamily: 'system-ui' }}>",
+      "\t\t<h1>${2:Page Title}</h1>",
+      "\t\t$0",
+      "\t</div>",
+      "</route>"
+    ],
+    "description": "Route avec styles"
+  },
+  "Fetch Server Data": {
+    "prefix": "vfetch",
+    "body": [
+      "<fetch server url=\"${1:/api/data}\" as=\"${2:data}\">",
+      "\t<div>",
+      "\t\t{${2:data}.${3:title}}",
+      "\t</div>",
+      "</fetch>"
+    ],
+    "description": "Fetch data côté serveur"
+  },
+  "Styled Div": {
+    "prefix": "vdiv",
+    "body": [
+      "<div style={{ ${1:padding: '1rem'} }}>",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "Div avec style inline"
+  },
+  "Card Component": {
+    "prefix": "vcard",
+    "body": [
+      "<div style={{ padding: '1.5rem', background: '${1:#f8fafc}', borderRadius: '${2:8px}', border: '${3:1px solid #e2e8f0}' }}>",
+      "\t<h3>${4:Title}</h3>",
+      "\t<p>${5:Content}</p>",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "Card stylisée"
+  },
+  "Button": {
+    "prefix": "vbutton",
+    "body": [
+      "<button",
+      "\ttype=\"${1|button,submit,reset|}\"",
+      "\tstyle={{ padding: '${2:0.75rem 1.5rem}', background: '${3:#6366f1}', color: '${4:white}', border: 'none', borderRadius: '${5:6px}', cursor: 'pointer' }}",
+      ">",
+      "\t${6:Button Text}",
+      "</button>"
+    ],
+    "description": "Bouton stylisé"
+  },
+  "Link": {
+    "prefix": "vlink",
+    "body": [
+      "<a href=\"${1:/}\" style={{ color: '${2:#6366f1}', textDecoration: 'none' }}>",
+      "\t${3:Link Text}",
+      "</a>"
+    ],
+    "description": "Lien stylisé"
+  },
+  "Grid Layout": {
+    "prefix": "vgrid",
+    "body": [
+      "<div style={{ display: 'grid', gridTemplateColumns: '${1:repeat(auto-fit, minmax(300px, 1fr))}', gap: '${2:1.5rem}' }}>",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "Layout grid"
+  },
+  "Flex Layout": {
+    "prefix": "vflex",
+    "body": [
+      "<div style={{ display: 'flex', flexDirection: '${1|row,column|}', gap: '${2:1rem}', alignItems: '${3|flex-start,center,flex-end|}' }}>",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "Layout flex"
+  },
+  "Form": {
+    "prefix": "vform",
+    "body": [
+      "<form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>",
+      "\t<div>",
+      "\t\t<label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>",
+      "\t\t\t${1:Label}",
+      "\t\t</label>",
+      "\t\t<input",
+      "\t\t\ttype=\"${2|text,email,password,number|}\"",
+      "\t\t\tstyle={{ width: '100%', padding: '0.75rem', border: '2px solid #e2e8f0', borderRadius: '6px' }}",
+      "\t\t\tplaceholder=\"${3:Placeholder}\"",
+      "\t\t/>",
+      "\t</div>",
+      "\t$0",
+      "\t<button type=\"submit\" style={{ padding: '0.75rem', background: '#6366f1', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>",
+      "\t\t${4:Submit}",
+      "\t</button>",
+      "</form>"
+    ],
+    "description": "Formulaire avec input et bouton"
+  },
+  "Header": {
+    "prefix": "vheader",
+    "body": [
+      "<header style={{ padding: '${1:2rem}', textAlign: 'center', background: '${2:#f8fafc}' }}>",
+      "\t<h1 style={{ fontSize: '${3:3rem}', color: '${4:#6366f1}', margin: '0' }}>",
+      "\t\t${5:Title}",
+      "\t</h1>",
+      "\t<p style={{ fontSize: '${6:1.2rem}', color: '${7:#64748b}', margin: '0.5rem 0' }}>",
+      "\t\t${8:Subtitle}",
+      "\t</p>",
+      "</header>"
+    ],
+    "description": "Header avec titre et sous-titre"
+  },
+  "Container": {
+    "prefix": "vcontainer",
+    "body": [
+      "<div style={{ maxWidth: '${1:1200px}', margin: '0 auto', padding: '${2:2rem}' }}>",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "Container centré"
+  },
+  "Section": {
+    "prefix": "vsection",
+    "body": [
+      "<section style={{ marginBottom: '${1:3rem}' }}>",
+      "\t<h2 style={{ color: '${2:#334155}', marginBottom: '${3:1rem}' }}>${4:Section Title}</h2>",
+      "\t$0",
+      "</section>"
+    ],
+    "description": "Section avec titre"
+  }
+}

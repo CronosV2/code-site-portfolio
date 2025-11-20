@@ -1,0 +1,11 @@
+{
+  "iconDefinitions": {
+    "vortex-icon": {
+      "iconPath": "./icons/file-icon.svg"
+    }
+  },
+  "fileExtensions": {
+    "vtx": "vortex-icon"
+  },
+  "file": "vortex-icon"
+}

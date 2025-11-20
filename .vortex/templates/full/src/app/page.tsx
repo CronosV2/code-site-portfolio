@@ -1,0 +1,108 @@
+export default function Page() {
+  return <div>
+  <div style={{
+      padding: '2rem',
+      fontFamily: 'system-ui',
+      maxWidth: '1200px',
+      margin: '0 auto'
+    }}>
+    <header style={{
+        textAlign: 'center',
+        marginBottom: '3rem'
+      }}>
+      <h1 style={{
+          fontSize: '4rem',
+          margin: '0',
+          color: '#6366f1'
+        }}>🌀 Vortex</h1>
+      <p style={{
+          fontSize: '1.5rem',
+          color: '#64748b',
+          margin: '0.5rem 0'
+        }}>
+        Framework Web avec Syntaxe Personnalisée
+      </p>
+    </header>
+
+    <main>
+      <section style={{
+          marginBottom: '3rem'
+        }}>
+        <h2 style={{
+            color: '#334155'
+          }}>✨ Fonctionnalités</h2>
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1.5rem'
+          }}>
+          <div style={{
+              padding: '1.5rem',
+              background: '#f8fafc',
+              borderRadius: '12px',
+              border: '2px solid #e2e8f0'
+            }}>
+            <h3>🚀 Syntaxe Simplifiée</h3>
+            <p>Utilisez la balise &lt;route&gt; pour définir vos pages sans code boilerplate</p>
+          </div>
+          <div style={{
+              padding: '1.5rem',
+              background: '#f8fafc',
+              borderRadius: '12px',
+              border: '2px solid #e2e8f0'
+            }}>
+            <h3>⚡ Transpilation Automatique</h3>
+            <p>Vos fichiers .vtx sont automatiquement convertis en React/Next.js</p>
+          </div>
+          <div style={{
+              padding: '1.5rem',
+              background: '#f8fafc',
+              borderRadius: '12px',
+              border: '2px solid #e2e8f0'
+            }}>
+            <h3>🔥 Hot Reload</h3>
+            <p>Développement fluide avec rechargement instantané</p>
+          </div>
+        </div>
+      </section>
+
+      <section style={{
+          padding: '2rem',
+          background: '#f1f5f9',
+          borderRadius: '12px'
+        }}>
+        <h2 style={{
+            color: '#334155'
+          }}>📚 Exemples de Pages</h2>
+        <ul style={{
+            listStyle: 'none',
+            padding: 0
+          }}>
+          <li style={{
+              marginBottom: '0.5rem'
+            }}>
+            <a href="/about" style={{
+                color: '#6366f1',
+                textDecoration: 'none',
+                fontSize: '1.1rem'
+              }}>
+              → À propos
+            </a>
+          </li>
+          <li style={{
+              marginBottom: '0.5rem'
+            }}>
+            <a href="/contact" style={{
+                color: '#6366f1',
+                textDecoration: 'none',
+                fontSize: '1.1rem'
+              }}>
+              → Contact
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  </div>;
+}

@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#6366f1"/>
+  <path d="M64 24L40 50L52 64L40 78L64 104L88 78L76 64L88 50L64 24Z" fill="white" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="64" cy="64" r="8" fill="#6366f1"/>
+  <text x="64" y="116" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">VORTEX</text>
+</svg>

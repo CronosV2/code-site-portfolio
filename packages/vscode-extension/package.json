@@ -1,0 +1,114 @@
+{
+  "name": "vortex-vscode",
+  "displayName": "Vortex Language Support",
+  "description": "Support pour les fichiers .vtx du framework Vortex",
+  "version": "0.1.0",
+  "publisher": "vortex",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "vortex",
+    "vtx",
+    "react",
+    "nextjs",
+    "framework"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vortex",
+        "aliases": [
+          "Vortex",
+          "VTX"
+        ],
+        "extensions": [
+          ".vtx"
+        ],
+        "filenames": [],
+        "filenamePatterns": [
+          "*.vtx"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/file-icon.svg",
+          "dark": "./icons/file-icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vortex",
+        "scopeName": "source.vortex",
+        "path": "./syntaxes/vortex.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.tsx": "typescriptreact",
+          "source.jsx": "javascriptreact"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "vortex",
+        "path": "./snippets/vortex.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "vortex-icons",
+        "label": "Vortex File Icons",
+        "path": "./vortex-icon-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vortex.createRoute",
+        "title": "Vortex: Create Route"
+      },
+      {
+        "command": "vortex.transpileFile",
+        "title": "Vortex: Transpile Current File"
+      }
+    ],
+    "configuration": {
+      "title": "Vortex",
+      "properties": {
+        "vortex.autoTranspile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Transpiler automatiquement les fichiers .vtx lors de la sauvegarde"
+        },
+        "vortex.outputDirectory": {
+          "type": "string",
+          "default": ".vortex",
+          "description": "Dossier de sortie pour les fichiers transpilés"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {
+    "@vortex/core": "workspace:*",
+    "discord-rpc": "^4.0.1"
+  },
+  "optionalDependencies": {
+    "@types/discord-rpc": "^4.0.6"
+  }
+}

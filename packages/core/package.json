@@ -1,0 +1,23 @@
+{
+  "name": "@vortex/core",
+  "version": "0.1.0",
+  "description": "Transpileur Vortex .vtx vers .tsx",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.23.6",
+    "@babel/traverse": "^7.23.6",
+    "@babel/types": "^7.23.6",
+    "@babel/generator": "^7.23.6",
+    "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.5"
+  }
+}
