@@ -37,13 +37,45 @@
   "Fetch Server Data": {
     "prefix": "vfetch",
     "body": [
-      "<fetch server url=\"${1:/api/data}\" as=\"${2:data}\">",
+      "<fetch server url=\"${1:https://api.example.com/data}\" as=\"${2:data}\">",
       "\t<div>",
-      "\t\t{${2:data}.${3:title}}",
+      "\t\t{${2:data}.map(item => (",
+      "\t\t\t<div key={item.id}>{item.${3:name}}</div>",
+      "\t\t))}",
       "\t</div>",
       "</fetch>"
     ],
     "description": "Fetch data côté serveur"
+  },
+  "VButton Component": {
+    "prefix": "vbtn",
+    "body": [
+      "<VButton variant=\"${1|primary,secondary,danger|}\" size=\"${2|sm,md,lg|}\">",
+      "\t${3:Button Text}",
+      "</VButton>"
+    ],
+    "description": "Composant VButton Vortex"
+  },
+  "VCard Component": {
+    "prefix": "vcrd",
+    "body": [
+      "<VCard title=\"${1:Card Title}\" description=\"${2:Description}\" hoverable>",
+      "\t$0",
+      "</VCard>"
+    ],
+    "description": "Composant VCard Vortex"
+  },
+  "VInput Component": {
+    "prefix": "vinput",
+    "body": [
+      "<VInput",
+      "\tlabel=\"${1:Label}\"",
+      "\ttype=\"${2|text,email,password,number|}\"",
+      "\tplaceholder=\"${3:Placeholder}\"",
+      "\t${4:required}",
+      "/>"
+    ],
+    "description": "Composant VInput Vortex"
   },
   "Styled Div": {
     "prefix": "vdiv",

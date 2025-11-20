@@ -57,26 +57,78 @@ class VortexTranspiler {
                 sourceType: 'module',
                 plugins: ['jsx', 'typescript'],
             });
+            let hasRoute = false;
+            const fetchStatements = [];
+            const vortexComponents = new Set();
             // Traverse l'AST pour détecter les balises Vortex
             (0, traverse_1.default)(ast, {
                 JSXElement(path) {
                     const openingElement = path.node.openingElement;
+                    const elementName = openingElement.name;
+                    // Détecter les composants Vortex (VButton, VCard, VInput)
+                    if (t.isJSXIdentifier(elementName) && elementName.name.startsWith('V')) {
+                        vortexComponents.add(elementName.name);
+                    }
+                },
+            });
+            // Deuxième passage pour transformer les balises spéciales
+            (0, traverse_1.default)(ast, {
+                JSXElement(path) {
+                    const openingElement = path.node.openingElement;
+                    // Détecter <fetch server url="..." as="...">
+                    if (t.isJSXIdentifier(openingElement.name) && openingElement.name.name === 'fetch') {
+                        const urlAttr = openingElement.attributes.find((attr) => t.isJSXAttribute(attr) &&
+                            t.isJSXIdentifier(attr.name) &&
+                            attr.name.name === 'url');
+                        const asAttr = openingElement.attributes.find((attr) => t.isJSXAttribute(attr) &&
+                            t.isJSXIdentifier(attr.name) &&
+                            attr.name.name === 'as');
+                        const serverAttr = openingElement.attributes.find((attr) => t.isJSXAttribute(attr) &&
+                            t.isJSXIdentifier(attr.name) &&
+                            attr.name.name === 'server');
+                        if (urlAttr && asAttr && serverAttr) {
+                            const url = urlAttr.value.value;
+                            const varName = asAttr.value.value;
+                            // Créer le code de fetch
+                            // const data = await fetch('url').then(r => r.json())
+                            const fetchCode = t.variableDeclaration('const', [
+                                t.variableDeclarator(t.identifier(varName), t.awaitExpression(t.callExpression(t.memberExpression(t.callExpression(t.identifier('fetch'), [t.stringLiteral(url)]), t.identifier('then')), [
+                                    t.arrowFunctionExpression([t.identifier('r')], t.callExpression(t.memberExpression(t.identifier('r'), t.identifier('json')), []))
+                                ])))
+                            ]);
+                            fetchStatements.push(fetchCode);
+                            // Remplacer <fetch> par son contenu
+                            const children = path.node.children;
+                            if (children.length > 0) {
+                                path.replaceWithMultiple(children);
+                            }
+                            else {
+                                path.remove();
+                            }
+                        }
+                    }
                     // Détecter <route path="...">
                     if (t.isJSXIdentifier(openingElement.name) && openingElement.name.name === 'route') {
-                        // Extraire le path
-                        const pathAttr = openingElement.attributes.find((attr) => t.isJSXAttribute(attr) &&
-                            t.isJSXIdentifier(attr.name) &&
-                            attr.name.name === 'path');
+                        hasRoute = true;
                         // Remplacer par un composant React standard
                         const newElement = t.jsxElement(t.jsxOpeningElement(t.jsxIdentifier('div'), []), t.jsxClosingElement(t.jsxIdentifier('div')), path.node.children, false);
-                        // Créer la fonction export default
-                        const functionDeclaration = t.exportDefaultDeclaration(t.functionDeclaration(t.identifier('Page'), [], t.blockStatement([
+                        // Créer la fonction export default async
+                        const functionBody = [
+                            ...fetchStatements,
                             t.returnStatement(newElement)
-                        ])));
+                        ];
+                        const functionDeclaration = t.exportDefaultDeclaration(t.functionDeclaration(t.identifier('Page'), [], t.blockStatement(functionBody), false, fetchStatements.length > 0 // async si y'a des fetch
+                        ));
+                        // Ajouter les imports des composants Vortex
+                        const imports = [];
+                        if (vortexComponents.size > 0) {
+                            const specifiers = Array.from(vortexComponents).map(name => t.importSpecifier(t.identifier(name), t.identifier(name)));
+                            imports.push(t.importDeclaration(specifiers, t.stringLiteral('@vortex/components')));
+                        }
                         // Remplacer tout le programme par cette déclaration
                         const programPath = path.findParent((p) => p.isProgram());
                         if (programPath) {
-                            programPath.node.body = [functionDeclaration];
+                            programPath.node.body = [...imports, functionDeclaration];
                         }
                         path.stop();
                     }

@@ -1,53 +1,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as DiscordRPC from 'discord-rpc';
-
-const CLIENT_ID = '1441023954822365235'; // ID de l'application Discord Vortex
-let rpc: DiscordRPC.Client | null = null;
-let startTimestamp: number;
-
-async function initDiscordRPC() {
-  try {
-    rpc = new DiscordRPC.Client({ transport: 'ipc' });
-
-    rpc.on('ready', () => {
-      console.log('🌀 Discord Rich Presence connecté');
-      startTimestamp = Date.now();
-      updatePresence();
-    });
-
-    await rpc.login({ clientId: CLIENT_ID });
-  } catch (error) {
-    console.error('❌ Erreur Discord RPC:', error);
-    rpc = null;
-  }
-}
-
-function updatePresence(fileName?: string) {
-  if (!rpc) return;
-
-  const activity: any = {
-    details: fileName ? `Édite ${path.basename(fileName)}` : 'Développe avec Vortex',
-    state: fileName?.endsWith('.vtx') ? ' Fichier Vortex' : 'Exploration du code',
-    startTimestamp,
-    largeImageKey: 'vortex-logo',
-    largeImageText: 'Vortex Framework',
-    smallImageKey: 'vscode-logo',
-    smallImageText: 'VS Code',
-    buttons: [
-      { label: '🌐 Voir Vortex', url: 'https://github.com/vortex-framework' }
-    ]
-  };
-
-  rpc.setActivity(activity).catch(console.error);
-}
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('🌀 Vortex extension activée');
-
-  // Initialiser Discord RPC
-  initDiscordRPC();
 
   // Commande: Créer une route
   const createRouteCommand = vscode.commands.registerCommand('vortex.createRoute', async () => {
@@ -116,18 +72,6 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showErrorMessage(`❌ Erreur de transpilation: ${error.message}`);
     }
   });
-
-  // Mettre à jour Discord RPC quand le fichier change
-  vscode.window.onDidChangeActiveTextEditor((editor) => {
-    if (editor) {
-      updatePresence(editor.document.fileName);
-    }
-  });
-
-  // Mettre à jour au démarrage si un fichier est ouvert
-  if (vscode.window.activeTextEditor) {
-    updatePresence(vscode.window.activeTextEditor.document.fileName);
-  }
 
   // Auto-transpiler à la sauvegarde
   const saveWatcher = vscode.workspace.onDidSaveTextDocument((document) => {
@@ -232,10 +176,4 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {
   console.log('🌀 Vortex extension désactivée');
-  
-  // Déconnecter Discord RPC
-  if (rpc) {
-    rpc.destroy().catch(console.error);
-    rpc = null;
-  }
 }

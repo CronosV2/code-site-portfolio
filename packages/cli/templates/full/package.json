@@ -1,0 +1,28 @@
+{
+  "name": "vortex-app-full",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ./vortex.js dev",
+    "start": "next start",
+      "postinstall": "echo '\u001b[36m[INFO] Utilisez vortex dev pour démarrer le serveur avec support .vtx (Next.js customisé)\u001b[0m'",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "bin": {
+    "vortex": "./vortex.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "chokidar": "^3.5.3"
+  }
+}

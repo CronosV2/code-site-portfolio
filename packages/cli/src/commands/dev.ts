@@ -1,4 +1,4 @@
-import { VortexWatcher } from '@vortex/core';
+import { VortexWatcher } from 'vortex-core';
 import * as path from 'path';
 import chalk from 'chalk';
 import { spawn } from 'child_process';
@@ -21,7 +21,7 @@ export async function devCommand() {
 
   // Transpiler tous les fichiers .vtx existants avant de démarrer
   console.log(chalk.yellow('📝 Transpilation initiale des fichiers .vtx...'));
-  const { VortexTranspiler } = require('@vortex/core');
+  const { VortexTranspiler } = require('vortex-core');
   const transpiler = new VortexTranspiler({
     inputPath: srcDir,
     outputPath: vortexDir,

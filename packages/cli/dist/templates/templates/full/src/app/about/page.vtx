@@ -1,0 +1,18 @@
+<route path="/about">
+  <div style={{ padding: '2rem', fontFamily: 'system-ui', maxWidth: '800px', margin: '0 auto' }}>
+    <h1 style={{ color: '#6366f1' }}>À propos de Vortex</h1>
+    <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#475569' }}>
+      Vortex est un framework web innovant qui simplifie le développement avec Next.js
+      grâce à une syntaxe personnalisée et intuitive.
+    </p>
+    <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#fef3c7', borderRadius: '8px', borderLeft: '4px solid #f59e0b' }}>
+      <p><strong>💡 Ce fichier utilise la syntaxe Vortex!</strong></p>
+      <p>La balise &lt;route path="/about"&gt; définit automatiquement cette page.</p>
+    </div>
+    <div style={{ marginTop: '2rem' }}>
+      <a href="/" style={{ color: '#6366f1', textDecoration: 'none', fontSize: '1.1rem' }}>
+        ← Retour à l'accueil
+      </a>
+    </div>
+  </div>
+</route>

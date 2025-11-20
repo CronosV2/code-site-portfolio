@@ -22,4 +22,12 @@ program
     .command('build')
     .description('Build le projet pour la production')
     .action(build_1.buildCommand);
-program.parse();
+// Si appelé comme npx create-vortex-app <project-name>, sans sous-commande
+const argv = process.argv.slice(2);
+if (argv.length === 1 && !argv[0].startsWith('-')) {
+    // npx create-vortex-app mon-projet
+    (0, create_1.createProject)(argv[0]);
+}
+else {
+    program.parse();
+}

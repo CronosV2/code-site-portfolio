@@ -29,41 +29,46 @@ export default function Page() {
           marginBottom: '3rem'
         }}>
         <h2 style={{
-            color: '#334155'
+            color: '#334155',
+            marginBottom: '1.5rem'
           }}>✨ Fonctionnalités</h2>
         <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '1.5rem'
           }}>
-          <div style={{
-              padding: '1.5rem',
-              background: '#f8fafc',
-              borderRadius: '12px',
-              border: '2px solid #e2e8f0'
-            }}>
-            <h3>🚀 Syntaxe Simplifiée</h3>
-            <p>Utilisez la balise &lt;route&gt; pour définir vos pages sans code boilerplate</p>
-          </div>
-          <div style={{
-              padding: '1.5rem',
-              background: '#f8fafc',
-              borderRadius: '12px',
-              border: '2px solid #e2e8f0'
-            }}>
-            <h3>⚡ Transpilation Automatique</h3>
-            <p>Vos fichiers .vtx sont automatiquement convertis en React/Next.js</p>
-          </div>
-          <div style={{
-              padding: '1.5rem',
-              background: '#f8fafc',
-              borderRadius: '12px',
-              border: '2px solid #e2e8f0'
-            }}>
-            <h3>🔥 Hot Reload</h3>
-            <p>Développement fluide avec rechargement instantané</p>
-          </div>
+          <VCard title="🚀 Syntaxe Simplifiée" hoverable>
+            Utilisez les balises &lt;route&gt; et &lt;fetch&gt; pour définir vos pages sans code boilerplate
+          </VCard>
+          
+          <VCard title="⚡ Transpilation Automatique" hoverable>
+            Vos fichiers .vtx sont automatiquement convertis en React/Next.js optimisé
+          </VCard>
+          
+          <VCard title="🔥 Hot Reload" hoverable>
+            Développement fluide avec rechargement instantané et preview en temps réel
+          </VCard>
         </div>
+      </section>
+
+      <section style={{
+          marginBottom: '3rem'
+        }}>
+        <h2 style={{
+            color: '#334155',
+            marginBottom: '1.5rem'
+          }}>🎨 Composants Vortex</h2>
+        <VCard title="Composants préfabriqués" description="Utilisez VButton, VCard et VInput dans vos projets">
+          <div style={{
+              display: 'flex',
+              gap: '1rem',
+              flexWrap: 'wrap'
+            }}>
+            <VButton variant="primary" size="md">Primary Button</VButton>
+            <VButton variant="secondary" size="md">Secondary Button</VButton>
+            <VButton variant="danger" size="sm">Danger Button</VButton>
+          </div>
+        </VCard>
       </section>
 
       <section style={{
@@ -72,35 +77,23 @@ export default function Page() {
           borderRadius: '12px'
         }}>
         <h2 style={{
-            color: '#334155'
+            color: '#334155',
+            marginBottom: '1rem'
           }}>📚 Exemples de Pages</h2>
-        <ul style={{
-            listStyle: 'none',
-            padding: 0
+        <div style={{
+            display: 'flex',
+            gap: '1rem'
           }}>
-          <li style={{
-              marginBottom: '0.5rem'
-            }}>
-            <a href="/about" style={{
-                color: '#6366f1',
-                textDecoration: 'none',
-                fontSize: '1.1rem'
-              }}>
-              → À propos
-            </a>
-          </li>
-          <li style={{
-              marginBottom: '0.5rem'
-            }}>
-            <a href="/contact" style={{
-                color: '#6366f1',
-                textDecoration: 'none',
-                fontSize: '1.1rem'
-              }}>
-              → Contact
-            </a>
-          </li>
-        </ul>
+          <VButton variant="primary" onClick={() => window.location.href = '/about'}>
+            → À propos
+          </VButton>
+          <VButton variant="primary" onClick={() => window.location.href = '/contact'}>
+            → Contact
+          </VButton>
+          <VButton variant="secondary" onClick={() => window.location.href = '/examples'}>
+            → Exemples
+          </VButton>
+        </div>
       </section>
     </main>
   </div>

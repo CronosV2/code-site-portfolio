@@ -1,0 +1,44 @@
+export default function Page() {
+  return <div>
+  <div style={{
+      padding: '2rem',
+      fontFamily: 'system-ui, sans-serif'
+    }}>
+    <h1 style={{
+        fontSize: '3rem',
+        color: '#6366f1'
+      }}>
+      🌀 Bienvenue dans Vortex!
+    </h1>
+    <p style={{
+        fontSize: '1.2rem',
+        color: '#64748b'
+      }}>
+      Vous utilisez la syntaxe .vtx personnalisée de Vortex
+    </p>
+    <div style={{
+        marginTop: '2rem',
+        padding: '1rem',
+        background: '#f8fafc',
+        borderRadius: '8px'
+      }}>
+      <h2>Ce fichier est écrit en .vtx 🎉</h2>
+      <ul>
+        <li>✅ Syntaxe simplifiée avec &lt;route&gt;</li>
+        <li>✅ Transpilation automatique vers React/Next.js</li>
+        <li>✅ Hot reload en développement</li>
+      </ul>
+    </div>
+    <div style={{
+        marginTop: '2rem'
+      }}>
+      <p><strong>Prochaines étapes:</strong></p>
+      <ol>
+        <li>Créez de nouveaux fichiers .vtx dans src/app/</li>
+        <li>Utilisez la syntaxe &lt;route path="/about"&gt; pour définir des routes</li>
+        <li>Explorez les fonctionnalités Vortex!</li>
+      </ol>
+    </div>
+  </div>
+  </div>;
+}

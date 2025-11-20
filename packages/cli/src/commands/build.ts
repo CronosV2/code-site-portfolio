@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { VortexTranspiler } from '@vortex/core';
+import { VortexTranspiler } from 'vortex-core';
 import * as path from 'path';
 import { spawn } from 'child_process';
 import ora from 'ora';

@@ -38,7 +38,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildCommand = buildCommand;
 const chalk_1 = __importDefault(require("chalk"));
-const core_1 = require("@vortex/core");
+const vortex_core_1 = require("vortex-core");
 const path = __importStar(require("path"));
 const child_process_1 = require("child_process");
 const ora_1 = __importDefault(require("ora"));
@@ -49,7 +49,7 @@ async function buildCommand() {
     const vortexDir = path.join(projectRoot, '.vortex', 'app');
     // Transpiler tous les fichiers .vtx
     const spinner = (0, ora_1.default)('Transpilation des fichiers .vtx...').start();
-    const transpiler = new core_1.VortexTranspiler({
+    const transpiler = new vortex_core_1.VortexTranspiler({
         inputPath: srcDir,
         outputPath: vortexDir,
     });

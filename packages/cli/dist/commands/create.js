@@ -95,9 +95,14 @@ async function scaffoldProject(config) {
         // Créer le dossier du projet
         fs.mkdirSync(projectPath);
         // Copier le template
-        const templatePath = path.join(__dirname, '../../..', 'templates', config.template);
+        // Toujours chercher dans le dossier templates à côté du code compilé (dist/templates)
+        let templatePath = path.resolve(__dirname, '../templates', config.template);
         if (!fs.existsSync(templatePath)) {
-            throw new Error(`Template "${config.template}" introuvable`);
+            // fallback: si jamais le chemin ci-dessus ne marche pas, essayer un chemin absolu (dev/debug)
+            templatePath = path.resolve(__dirname, '../../templates', config.template);
+        }
+        if (!fs.existsSync(templatePath)) {
+            throw new Error(`Template "${config.template}" introuvable dans ${templatePath}`);
         }
         fs.copySync(templatePath, projectPath);
         // Créer le dossier .vortex pour les fichiers transpilés
@@ -106,6 +111,11 @@ async function scaffoldProject(config) {
         const packageJsonPath = path.join(projectPath, 'package.json');
         const packageJson = fs.readJsonSync(packageJsonPath);
         packageJson.name = config.name;
+        // Ajoute create-vortex-app en devDependency
+        packageJson.devDependencies = packageJson.devDependencies || {};
+        // Utilise la même version que le CLI courant
+        const cliPkg = fs.readJsonSync(path.resolve(__dirname, '../../package.json'));
+        packageJson.devDependencies['create-vortex-app'] = `^${cliPkg.version}`;
         fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
         spinner.succeed('Projet créé avec succès!');
         // Installer les dépendances

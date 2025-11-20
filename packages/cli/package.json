@@ -1,17 +1,39 @@
 {
-  "name": "@vortex/cli",
-  "version": "0.1.0",
-  "description": "CLI pour créer et gérer des projets Vortex",
+  "name": "create-vortex-app",
+  "version": "0.2.13",
+  "description": "CLI pour créer et gérer des projets Vortex (npx create-vortex-app)",
   "bin": {
+    "create-vortex-app": "./dist/index.js",
     "vortex": "./dist/index.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "keywords": [
+    "vortex",
+    "cli",
+    "framework",
+    "create-app",
+    "nextjs",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CronosV2/code-site-portfolio"
+  },
+  "author": "CronosV2",
+  "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run postbuild",
+    "postbuild": "sh ./postbuild.sh",
     "dev": "tsc --watch",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@vortex/core": "workspace:*",
+    "vortex-core": "^0.1.0",
     "commander": "^11.1.0",
     "inquirer": "^9.2.12",
     "chalk": "^4.1.2",

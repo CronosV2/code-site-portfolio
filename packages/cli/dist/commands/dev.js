@@ -37,7 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.devCommand = devCommand;
-const core_1 = require("@vortex/core");
+const vortex_core_1 = require("vortex-core");
 const path = __importStar(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
 const child_process_1 = require("child_process");
@@ -47,7 +47,7 @@ async function devCommand() {
     const srcDir = path.join(projectRoot, 'src', 'app');
     const vortexDir = path.join(projectRoot, '.vortex', 'app');
     // Démarrer le watcher Vortex
-    const watcher = new core_1.VortexWatcher({
+    const watcher = new vortex_core_1.VortexWatcher({
         inputDir: srcDir,
         outputDir: vortexDir,
         onTranspile: (file) => {
@@ -56,7 +56,7 @@ async function devCommand() {
     });
     // Transpiler tous les fichiers .vtx existants avant de démarrer
     console.log(chalk_1.default.yellow('📝 Transpilation initiale des fichiers .vtx...'));
-    const { VortexTranspiler } = require('@vortex/core');
+    const { VortexTranspiler } = require('vortex-core');
     const transpiler = new VortexTranspiler({
         inputPath: srcDir,
         outputPath: vortexDir,

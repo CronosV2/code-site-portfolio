@@ -1,0 +1,103 @@
+export default function Page() {
+  return <div>
+  <fetch server url="https://jsonplaceholder.typicode.com/posts?_limit=6" as="posts">
+    <div style={{
+        padding: '2rem',
+        fontFamily: 'system-ui',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+      <header style={{
+          marginBottom: '2rem'
+        }}>
+        <h1 style={{
+            fontSize: '3rem',
+            color: '#6366f1'
+          }}>📖 Exemples Vortex</h1>
+        <p style={{
+            color: '#64748b',
+            fontSize: '1.2rem'
+          }}>
+          Découvrez la puissance de la syntaxe &lt;fetch&gt;
+        </p>
+      </header>
+
+      <section style={{
+          marginBottom: '3rem'
+        }}>
+        <VCard title="🌐 Data Fetching Server-Side" description="Les données sont récupérées côté serveur automatiquement">
+          <p style={{
+              color: '#475569'
+            }}>
+            Cette page utilise la balise &lt;fetch server&gt; pour récupérer des données depuis une API.
+            Le code est généré automatiquement et s'exécute côté serveur (Server Component Next.js).
+          </p>
+        </VCard>
+      </section>
+
+      <section>
+        <h2 style={{
+            color: '#334155',
+            marginBottom: '1.5rem'
+          }}>📝 Articles Récupérés</h2>
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '1.5rem'
+          }}>
+          {posts.map(post => <VCard key={post.id} title={post.title} hoverable>
+              <p style={{
+                color: '#64748b',
+                fontSize: '0.95rem'
+              }}>
+                {post.body.slice(0, 120)}...
+              </p>
+              <div style={{
+                marginTop: '1rem'
+              }}>
+                <VButton variant="secondary" size="sm">
+                  Lire plus
+                </VButton>
+              </div>
+            </VCard>)}
+        </div>
+      </section>
+
+      <section style={{
+          marginTop: '3rem',
+          padding: '2rem',
+          background: '#f1f5f9',
+          borderRadius: '12px'
+        }}>
+        <h3 style={{
+            color: '#334155'
+          }}>💡 Comment ça marche ?</h3>
+        <pre style={{
+            background: '#1e293b',
+            color: '#e2e8f0',
+            padding: '1.5rem',
+            borderRadius: '8px',
+            overflow: 'auto'
+          }}>
+            {`<route path="/examples">
+  <fetch server url="https://api.com/posts" as="posts">
+    {posts.map(post => (
+      <VCard title={post.title}>
+        {post.body}
+      </VCard>
+    ))}
+  </fetch>
+</route>`}
+        </pre>
+        <div style={{
+            marginTop: '2rem'
+          }}>
+          <VButton variant="primary" onClick={() => window.location.href = '/'}>
+            ← Retour à l'accueil
+          </VButton>
+        </div>
+      </section>
+    </div>
+  </fetch>
+  </div>;
+}
